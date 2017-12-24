@@ -30,7 +30,19 @@
 ///     let c = &a;
 /// # }
 /// ```
+///
+/// ```
+/// # #[macro_use] extern crate subvert; fn main() {
+///     let mut a = 0u32;
+///
+///     let b: &mut u32 = unsafe { steal!(&mut a, u32) }; //This version specifies the
+///         //type of `a` as `u32` which returns a `&mut u32`, rather than an `&mut _`.
+///
+///     let c = &a;
+/// # }
+/// ```
 #[macro_export]
 macro_rules! steal {
-    ($ptr:expr) => (&mut *($ptr as *mut _))
+    ($ptr:expr) => (&mut *($ptr as *mut _));
+    ($ptr:expr, $t:ty) => (&mut *($ptr as *mut $t));
 }
