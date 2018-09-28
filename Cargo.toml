@@ -1,6 +1,9 @@
 [package]
 name = "subvert"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Dynisious <daniel.bechaz@gmail.com>"]
+
+[features]
+pin = []
 
 [dependencies]
