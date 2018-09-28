@@ -7,7 +7,7 @@
 
 #![deny(missing_docs)]
 
-#![cfg_attr(pin, feature(pin))]
+#![cfg_attr(feature = "pin", feature(pin))]
 
 mod steal;
 mod update;
