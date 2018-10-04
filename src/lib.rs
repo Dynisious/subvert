@@ -1,9 +1,10 @@
 //! `subvert` is a crate meant to provide common utilities which are `unsafe` according
-//! to the Rust compiler but sometimes prove to be a necessary evil to make our code more
-//! efficient or to keep our solutions simple.
-//!
+//! to the Rust compiler but:
+//! * Are common actions which cannot be tracked by the compiler.
+//! * Sometimes prove to be a necessary evil.
+//! 
 //! Author --- daniel.bechaz@gmail.com  
-//! Last Modified --- 2017/12/4
+//! Last Modified --- 2018/10/2
 
 #![deny(missing_docs)]
 
@@ -11,6 +12,8 @@
 
 mod steal;
 mod update;
+mod index;
 
 pub use self::steal::*;
 pub use self::update::*;
+pub use self::index::*;

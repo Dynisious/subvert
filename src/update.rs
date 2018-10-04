@@ -1,3 +1,5 @@
+//! Author --- daniel.bechaz@gmail.com  
+//! Last Modified --- 2018/10/2
 
 use std::ptr;
 
@@ -24,7 +26,7 @@ use std::ptr;
 /// 
 /// //Error: cannot move out of borrowed content
 /// // *x = match *x {
-/// //     x => Foo(x.0 * 10,),
+/// //   x => Foo(x.0 * 10,),
 /// // };
 /// 
 /// update(x, |x: Foo| Foo(x.0 * 10,));
@@ -33,7 +35,7 @@ use std::ptr;
 /// ```
 #[cfg(not(feature = "pin"))]
 pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,) {
-    unsafe { ptr::write(val, func(ptr::read(val)),) }
+  unsafe { ptr::write(val, func(ptr::read(val)),) }
 }
 
 /// Updates the value behind the passed reference using a byval update function.
@@ -59,7 +61,7 @@ pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,) {
 /// 
 /// //Error: cannot move out of borrowed content
 /// // *x = match *x {
-/// //     x => Foo(x.0 * 10,),
+/// //   x => Foo(x.0 * 10,),
 /// // };
 /// 
 /// update(x, |x: Foo| Foo(x.0 * 10,));
@@ -68,6 +70,6 @@ pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,) {
 /// ```
 #[cfg(feature = "pin")]
 pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,)
-    where T: ::std::pin::Unpin, {
-    unsafe { ptr::write(val, func(ptr::read(val)),) }
+  where T: ::std::pin::Unpin, {
+  unsafe { ptr::write(val, func(ptr::read(val)),) }
 }
