@@ -20,7 +20,7 @@
 /// //let b = &mut a; //This line will cause compilation to fail because if you
 /// //have a mutable reference you can not have any other references.
 ///
-/// let b = unsafe { steal!(&mut a, i32) }; //This subverts the Rust borrow
+/// let b = unsafe { steal!(&mut a; i32) }; //This subverts the Rust borrow
 ///   //checker and allows you to have other references.
 ///
 /// let c: &mut i32 = unsafe { steal!(&mut a) }; //This tries to guess the type of the reference.
@@ -31,5 +31,5 @@
 #[macro_export]
 macro_rules! steal {
     ($ptr:expr; $tp:ty) => (&mut *($ptr as *mut $tp));
-    ($ptr:expr) => (steal!($ptr, _));
+    ($ptr:expr) => (steal!($ptr; _));
 }
