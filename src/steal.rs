@@ -30,6 +30,6 @@
 /// ```
 #[macro_export]
 macro_rules! steal {
-    ($ptr:expr, $tp:ty) => (&mut *($ptr as *mut $tp));
+    ($ptr:expr; $tp:ty) => (&mut *($ptr as *mut $tp));
     ($ptr:expr) => (steal!($ptr, _));
 }

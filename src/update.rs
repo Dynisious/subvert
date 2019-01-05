@@ -34,8 +34,9 @@ use std::ptr;
 /// assert_eq!(100, x.0,);
 /// ```
 #[cfg(not(feature = "pin"))]
-pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,) {
-  unsafe { ptr::write(val, func(ptr::read(val)),) }
+pub fn update<T, F, O,>(val: &mut T, func: F,)
+  where F: FnOnce(T,) -> O, O: Into<T>, {
+  unsafe { ptr::write(val, func(ptr::read(val)).into(),) }
 }
 
 /// Updates the value behind the passed reference using a byval update function.
@@ -69,7 +70,7 @@ pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,) {
 /// assert_eq!(100, x.0,);
 /// ```
 #[cfg(feature = "pin")]
-pub fn update<T,>(val: &mut T, func: impl FnOnce(T,) -> T,)
-  where T: ::std::pin::Unpin, {
-  unsafe { ptr::write(val, func(ptr::read(val)),) }
+pub fn update<T, F, O,>(val: &mut T, func: F,)
+  where T: std::pin::Unpin, F: FnOnce(T,) -> O, O: Into<T>, {
+  unsafe { ptr::write(val, func(ptr::read(val)).into(),) }
 }

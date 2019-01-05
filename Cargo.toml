@@ -1,6 +1,6 @@
 [package]
 name = "subvert"
-version = "0.1.1"
+version = "0.2.1"
 authors = ["Dynisious <daniel.bechaz@gmail.com>"]
 edition = "2018"
 
